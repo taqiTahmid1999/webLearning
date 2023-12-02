@@ -1,0 +1,53 @@
+<!--box-shadow: <horizontal-offset(+ => right - => left)> <vertical-offset(+ => down - => top)> <blur-radius> <spread-radius> <color>;-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shadow</title>
+    <style>
+        div{
+            margin: 15rem;
+            width: 50%;
+            height: 15rem;
+            border: 1px solid black;
+            box-shadow: 10px 10px black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #inset{
+            box-shadow: inset 10px 10px black ;/*Inset meaning to put somthing inside of anything*/
+        }
+        #blur{
+            box-shadow: 10px 10px 5px black;
+        }
+        #radius{
+            box-shadow: 10px 10px 5px 10px black;
+        }
+        #only-radius{
+            box-shadow: 0px 0px 10px 10px black   ;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <p>this is a shadow project</p>
+    </div>
+    <div id="inset">
+        <p>this is a insert shadow project</p>
+    </div>
+    <div id="blur">
+        <p>this is a shadow project</p>
+    </div>
+    <div id="radius">
+        <p>this is a shadow project</p>
+    </div>
+    <div id="only-radius">
+        <p>this is a shadow project</p>
+    </div>
+    <div id="">
+        <p>this is a shadow project</p>
+    </div>
+</body>
+</html>

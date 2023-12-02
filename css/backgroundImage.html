@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Image</title>
+    <link rel="shortcut icon" href="img/logo-css3.svg" type="image/x-icon">
+    <style>
+        *{
+            margin: 0;
+            padding: 1rem;
+            box-sizing: border-box;
+            font-weight: lighter;
+        }
+
+        #backImage{
+            margin: 0.25rem;
+            padding: 0.25rem;
+            border: 1px solid black;
+            width: 60%;
+        }
+        #bgimg{
+            background-color: rgb(86, 120, 149);
+        }
+        #bgimg h2{
+            color: white;
+            background-color: black;
+        }
+        #bgimg span {
+            padding: 0;
+            margin: 0;
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+        .imageContainer{
+            width: 80%;
+            padding: 1rem;
+            border: 1px solid black;
+            display: flex;
+            justify-content: space-between;
+        }
+        .one , .two{
+            border: 1px solid gray;
+            width: 40%;
+            height: 8rem;
+        }
+        .one{
+            background-image: url("img/balloons.jpg");
+        }
+        .two{
+            background-color: rgba(128, 128, 128, 0.5);
+            background-image: url("img/star.png");
+        }
+        .no-repeat{
+            background-repeat: no-repeat;
+        }
+        .repeat-x{
+            background-repeat: repeat-x;
+        }
+        .repeat-y{
+            background-repeat: repeat-y;
+        }
+        .contain{
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+        .cover{
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        body{
+            background-image: url(img/star.png);
+            background-repeat: no-repeat;
+            background-position: top right;
+        }
+        html{
+            background-image: url(img/star.png);
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+    </style>
+</head>
+<body>
+    <h1>Learning Background Image</h1>
+    <section id="backImage">
+        <div id="bgimg">
+            <h2>Background Color</h2>
+            <p>Learning how to change Background <span>Colors</span></p>
+        </div>
+    </section>
+    
+    <div class="imageContainer">
+        <div class="one">
+
+        </div>
+        <div class="two default">
+
+        </div>
+    </div>
+    <div class="imageContainer">
+        <div class="one">
+
+        </div>
+        <div class="two no-repeat">
+
+        </div>
+    </div>
+    <div class="imageContainer">
+        <div class="one">
+
+        </div>
+        <div class="two repeat-x">
+
+        </div>
+    </div>
+    <div class="imageContainer">
+        <div class="one">
+
+        </div>
+        <div class="two repeat-y">
+
+        </div>
+    </div>
+    <p>contain --> will contain the whole image inside the box</p>
+    <p>cover --> will cover the whole box</p>
+    <div class="imageContainer">
+        <div class="one cover">
+
+        </div>
+        <div class="two no-repeat">
+
+        </div>
+    </div>
+        <div class="imageContainer">
+            <div class="one contain">
+    
+            </div>
+            <div class="two no-repeat">
+    
+            </div>
+            </div>
+
+</body>
+</html>

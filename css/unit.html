@@ -1,0 +1,66 @@
+<!--https://whatunit.com/-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./img/logo-css3.svg" type="image/x-icon">
+    <title>CSS unit</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <h1>CSS Unit Learning</h1>
+    <h3>px</h3>
+    <p>Use of px should be avoided, but still it can be used in very small space like box shadow or border</p>
+    <h3>em</h3>
+    <p>By default the font size of every browser is 16px. em is refered to the closest parent font size. In html document many tags are nested into each other. If many elements size is refered using em, it becomes very difficult to manage em unit.</p>
+    <div class="1" style="font-size: 1.5em;">
+        <p>Study</p>
+        <div class="2" style="font-size: 1.7em;">
+            <p>Study</p>
+            <div class="3" style="font-size: 3em;">
+                <p>Study</p>
+            </div>
+        </div>
+    </div>
+    <p>As you can see controlling the font size in div 3 becomes very difficult</p>
+    <h3>rem</h3>
+    <p>rem is the font size of the root element which is usually html and its value usually is 16px, for this reason rem is very easy to work with. But it does not mean we should skip em totally. Here is an example of use case of em:</p>
+    <p>Now we are going to take 3 button in 3 nested div</p>
+    <div class="1" style="font-size: 2rem; border: 1px solid red; padding: 5px;">
+        <p>Div 1</p>
+        <button style="padding: 1em; background-color: red;">Study</button>
+        <div class="2" style="font-size: 1.5rem; border: 1px solid blue; padding: 5px;">
+            <p>Div 2</p>
+            <button style="padding: 1em; background-color: blue;">Study</button>
+            <div class="3" style="font-size: 1rem;border: 1px solid green; padding: 5px;">
+                <p>Div 3</p>
+                <button style="padding: 1em; background-color: green;">Study</button>
+            </div>
+        </div>
+    </div>
+    <p>As we can see we use rem in every div as a font size. But at the time of padding we used em, which is a ideal case here.</p>
+    <h3>ch unit</h3>
+    <p>ch is equal to the size of o. Let just see an example:</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus placeat maxime incidunt rem, excepturi quos modi cum voluptatibus enim aspernatur culpa ipsum? Eius consequatur voluptates perferendis quis aperiam hic odio.</p>
+    <p>See the difference between two paragraph</p>
+    <p style="max-width: 60ch;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, laboriosam porro sit, enim necessitatibus iure excepturi, corporis quia veniam sunt nemo et deserunt eligendi ab error quisquam molestias veritatis! Harum!</p>
+    <h3>percentage % unit</h3>
+    <p>When you define some child container width as %, it is measured relative to the amount of parent container element width</p>
+    <div id="parent" style="padding: 2rem; background-color: palevioletred; width: 80%;">
+        <div id="child" style="padding: 2rem; border: 1px solid palegreen; width: 50%;"></div>
+    </div>
+    <h3>When should we use what???</h3>
+    <ul>
+        <strong>
+        <li>font size=> rem</li>
+        <li>width=> % , often max width, optional vw, ch is a good idea too</li>
+        <li>height( think why first )=> min-height, %, rem, vh( be careful)</li>
+        <li>padding/ margin=> em/rem</li>
+        <li>media query=>em</li>
+    </strong>
+    </ul>
+</body>
+</html>
