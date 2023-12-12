@@ -1,1 +1,57 @@
-git/github cheatsheet link: https://drive.google.com/file/d/1ptrG9esGUe5YYSgLdNZtFEpYKlX1gHZ9/view?usp=sharing
+###### [git-Github cheatsheat](./assets/git-github-reference-1.pdf)
+  
+Git-Github Architecture
+***
+Working Directory -(add)-> Stagin Area / Index -(commit)-> Local Repository ---> |online| -(push)-> Remote Repository
+***
+What we learn in this [video 1](https://youtu.be/hrTQipWp6co) and [video 2](https://youtu.be/1ibmWyt8hfw):
+1. ***git status***: Situation in WD and SA
+2. ***git log***: Commit history in Local Repository
+3. ***git commit -m "version1" --amend***: *Amend* means **repair something**. Instead of creating new commit, this commit will go into our previous commit. This is very helpful for re-adjust our commit.
+4. ***git reset***: When we type git add . All the file are added to the staging area. But when we type git reset it reverse the add function, which means Staging Area's file is been transfered to the Working Directory.  
+5. ***git checkout --***: When we change a file in our WS, we can undo it by typing git checkout --<fileName| .>
+6. ***commit hash***: When we type git log --oneline --graph. We can get a big number which is the ID of each commit. This ID is called commit hash.
+7. ***git checkout < commit hash >***: We can check each and every code in every commit by using this command.
+8. ***HEAD***: Which version we are currently viewing are marked as < HEAD >
+9. ***git log --all***: We can check all the commit also behind the commit log. commit log only show the ahead commit (Previous). 
+10. ***git checkout < commit hash> < file | folder | . >***: To restore any file or folder or all from any commit history.
+
+
+### Summary:
+- #### To Create a Version
+```
+git init
+git add <file|folder|.>
+git status
+git commit -m "message" 
+``` 
+- #### To Repair Any Version
+```
+git log --all --graph
+git checkout <commit_hash>
+git add <file|folder|.>
+git commit -m "message" --amend 
+```
+- #### To View Version
+```
+git log --all --graph
+git checkout <commit_hash>
+git checkout <branch_name>
+``` 
+- #### To Restore Version
+```
+git log --all --graph
+git checkout <commit_hash> <file|folder|.>
+git add <file|folder|.>
+git commit -m "message"
+``` 
+- #### To Completely Delete Git From Directory
+```
+rm -rf .git
+    OR,
+Remove-Item -Recurse -Force .git
+``` 
+- #### To Ignore any file in git 
+1. Create .gitignore
+2. In that file add the file you want to git to be ignored
+3. Then create a version git to be ignored
