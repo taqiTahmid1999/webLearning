@@ -55,3 +55,9 @@ Remove-Item -Recurse -Force .git
 1. Create .gitignore
 2. In that file add the file you want to git to be ignored
 3. Then create a version git to be ignored
+
+- #### To avoid any Unnecessary Branch Use merge
+```
+git checkout <commit_hash|main>
+git merge <branch_name|commit_hash|HEAD|origin/main>
+```
