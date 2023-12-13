@@ -14,8 +14,24 @@ What we learn in this [video 1](https://youtu.be/hrTQipWp6co) and [video 2](http
 7. ***git checkout < commit hash >***: We can check each and every code in every commit by using this command.
 8. ***HEAD***: Which version we are currently viewing are marked as < HEAD >
 9. ***git log --all***: We can check all the commit also behind the commit log. commit log only show the ahead commit (Previous). 
-10. ***git checkout < commit hash> < file | folder | . >***: To restore any file or folder or all from any commit history.
+10. ***git checkout < commit hash> < file | folder | . >***: To restore any file or folder or all from any commit history.  
+11. ***git push -u origin main***: This is the Git command for pushing commits from your local repository to a remote repository.
 
+    ***-u***: This option is short for --set-upstream. When you use -u, you are setting up a tracking relationship between your local branch and the remote branch. This means that in the future, when you run git push or git pull, Git will know the default remote and branch to use, and you won't need to specify them each time.
+
+    ***origin***: This is the default name Git gives to the remote repository from which you cloned your local repository. It's a common convention, but your remote repository might have a different name.
+
+    ***main***: This is the name of the local branch you want to push to the remote repository. In this case, you are pushing the local branch named main to the remote repository.
+
+So, the command git push -u origin main is essentially saying:
+
+    "Push the commits from my local branch named main to the remote repository named origin, and set up tracking so that in the future, I can simply use git push without specifying the remote and branch each time."
+
+After running this command, if you subsequently want to push changes to the main branch, you can simply use git push without specifying the remote and branch:
+```
+git push
+```
+This is possible because the tracking relationship has been established with the -u option in the initial push command.
 
 ### Summary:
 - #### To Create a Version
@@ -61,3 +77,62 @@ Remove-Item -Recurse -Force .git
 git checkout <commit_hash|main>
 git merge <branch_name|commit_hash|HEAD|origin/main>
 ```
+## GitHub
+- #### To add a Github repository to project
+```
+git remote add <remote_name|origin> <github repository link>
+git remote -v
+git config --global credential.username "Username_of_Github_Account"
+git remote push <remote_name|origin> <branch_name|main>
+git remote remove <remote_name>(if we want to delete remote)
+```
+- #### Create a new repository on CLI
+```
+echo "# gitPractice" >> README.md
+  git init
+  git add README.md
+  git commit -m "first commit"
+  git branch -M main
+  git remote add origin https://github.com/taqiTahmid1999/gitPractice.git
+  git push -u origin main
+```
+- #### Push an existing repository from the command line
+```
+git remote add origin https://github.com/taqiTahmid1999/gitPractice.git
+  git branch -M main
+  git push -u origin main
+```
+- #### How to push commit from local branch named branch2 to remote branch master:
+If you want to push the commits from your local `branch2` to the `master` branch on the remote repository, you can follow these steps:
+
+1. **Ensure You Are on `branch2`:**
+   ```bash
+   git checkout branch2
+   ```
+
+2. **Commit Your Changes:**
+   ```bash
+   git commit -m "Your commit message"
+   ```
+
+3. **Push to `master` on Remote:**
+   ```bash
+   git push origin branch2:master
+   ```
+
+   This command specifies that you want to push the local changes from `branch2` to the `master` branch on the remote repository (`origin`).
+
+   If it's the first time you are pushing `branch2` to the `master` branch, you may need to use the `-u` option to set up tracking:
+
+   ```bash
+   git push -u origin branch2:master
+   ```
+
+   After the initial push with `-u`, you can use `git push` for subsequent pushes:
+
+   ```bash
+   git push
+   ```
+
+This will update the `master` branch on the remote repository with the changes from your local `branch2`. Make sure you have the necessary permissions to push to the `master` branch on the remote repository. Additionally, communicate with your team if needed, especially if others are working on the same repository.
+ 
