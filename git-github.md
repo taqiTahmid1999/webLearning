@@ -45,8 +45,8 @@ So, there is only one remote branch involved here (`origin/main`), and it corres
 
 13. <mark>Remember</mark>: git push will only push when a new commit will be done .It will not push code even the code has been changed or in staging area.push only push commits and it does not push changes.
 14. ***git fetch***: When you run git fetch origin (assuming origin is the name of your remote repository), Git fetches any new branches or changes made on the remote repository. This command fetches changes from the remote repository named origin and updates your remote-tracking branches (like origin/main, origin/feature-branch, etc.) to reflect any changes made on the remote.
-15. ***git clone <URL> <folder_name(optional)>: It clone a remote repository to our local device.
-16. *** git pull origin <branch_name>***: The `git pull` command in Git is a combination of two operations: `git fetch` and `git merge`. When you run `git pull origin <branch_name>`, you are essentially fetching changes from the remote repository (`origin`) for the specified branch and merging those changes into your current local branch.
+15. ***git clone <URL> <folder_name(optional)>***: It clone a remote repository to our local device.
+16. ***git pull origin <branch_name>***: The `git pull` command in Git is a combination of two operations: `git fetch` and `git merge`. When you run `git pull origin <branch_name>`, you are essentially fetching changes from the remote repository (`origin`) for the specified branch and merging those changes into your current local branch.
 
 Here's a breakdown of what `git pull origin <branch_name>` does:
 
