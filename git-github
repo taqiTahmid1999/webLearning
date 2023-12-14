@@ -33,6 +33,51 @@ git push
 ```
 This is possible because the tracking relationship has been established with the -u option in the initial push command.
 
+12. ***`(HEAD -> main, origin/main, origin/HEAD)`***: in the `git log` output is indicating the state of the branches in your local and remote repositories, not multiple remote branches.  
+Let's break it down:  
+>**`(HEAD -> main)`:** This part indicates that your current working directory is on the `main` branch. The `HEAD` pointer is pointing to the latest commit on the `main` branch.  
+
+>**`(origin/main)`:** This part indicates that the remote-tracking branch named `origin/main` is also pointing to the same commit. `origin/main` is a local representation of the `main` branch on the remote repository named `origin`. It keeps track of where the `main` branch is on the remote.
+
+>**`(origin/HEAD)`:** This part indicates the state of the `HEAD` pointer on the remote repository (`origin`). It tells you which branch is currently checked out on the remote repository. In this case, it suggests that on the remote repository, the `HEAD` is pointing to the same commit as the remote `main` branch.
+
+So, there is only one remote branch involved here (`origin/main`), and it corresponds to the `main` branch on the remote repository (`origin`). The `origin/HEAD` part is not indicating a separate branch; rather, it's telling you where the `HEAD` is on the remote repository, and in this case, it's pointing to the same commit as `origin/main`.
+
+13. <mark>Remember</mark>: git push will only push when a new commit will be done .It will not push code even the code has been changed or in staging area.push only push commits and it does not push changes.
+14. ***git fetch***: When you run git fetch origin (assuming origin is the name of your remote repository), Git fetches any new branches or changes made on the remote repository. This command fetches changes from the remote repository named origin and updates your remote-tracking branches (like origin/main, origin/feature-branch, etc.) to reflect any changes made on the remote.
+15. ***git clone <URL> <folder_name(optional)>: It clone a remote repository to our local device.
+16. *** git pull origin <branch_name>***: The `git pull` command in Git is a combination of two operations: `git fetch` and `git merge`. When you run `git pull origin <branch_name>`, you are essentially fetching changes from the remote repository (`origin`) for the specified branch and merging those changes into your current local branch.
+
+Here's a breakdown of what `git pull origin <branch_name>` does:
+
+ **`git fetch origin <branch_name>`:**
+   - This fetches the changes from the specified branch (`<branch_name>`) on the remote repository (`origin`). It updates your remote-tracking branch (`origin/<branch_name>`) to reflect the changes on the remote repository.
+
+     ```
+     git fetch origin <branch_name>
+     ```
+
+ **`git merge origin/<branch_name>`:**
+   - After fetching the changes, Git automatically merges the changes into your current local branch.
+
+     ```
+     git merge origin/<branch_name>
+     ```
+
+   If there are no conflicts, Git will perform a fast-forward merge, bringing your local branch up to date with the changes from the remote branch.
+
+Alternatively, you can use the following shorthand, which combines both steps into a single command:
+
+```
+git pull origin <branch_name>
+```
+
+This command is convenient for synchronizing your local branch with the corresponding branch on the remote repository. However, it's important to note that `git pull` automatically performs a merge, which may lead to merge conflicts if changes have been made both locally and remotely.
+
+If you prefer more control over the merging process or want to review changes before merging, you can use `git fetch` followed by `git merge` or `git rebase` separately.
+
+***
+
 ### Summary:
 - #### To Create a Version
 ```
@@ -136,3 +181,17 @@ If you want to push the commits from your local `branch2` to the `master` branch
 
 This will update the `master` branch on the remote repository with the changes from your local `branch2`. Make sure you have the necessary permissions to push to the `master` branch on the remote repository. Additionally, communicate with your team if needed, especially if others are working on the same repository.
  
+ - #### Create a github backup
+ ```
+ git remote add origin <URL>
+ git push -u origin <branch_name>
+ ```
+ - #### Push code to github
+ ```
+ git push origin <branch_name>
+ git push origin <branch_name> -f
+ ```
+ - #### Github to local
+ ```
+ git pull origin main
+ ```
