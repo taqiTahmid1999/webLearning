@@ -77,6 +77,42 @@ This command is convenient for synchronizing your local branch with the correspo
 If you prefer more control over the merging process or want to review changes before merging, you can use `git fetch` followed by `git merge` or `git rebase` separately.  
 
 17. ***git merge <branch_name> -m "Message"***:  Usually when we have two branch, that we want to merge the result merge will be the branch where we currently are. It is a good idea to merge a feature branch with the main branch when we are in main branch. So that the merged branch will be the main branch.
+18. ***Feature Branch Workflow***:
+  - **Create a Feature Branch:** Start by creating a new branch for each new feature or task. This branch is where you'll make and commit your changes.
+```
+git checkout -b feature-name
+```
+- **Work on the Feature:** Make your changes, commit regularly, and push the feature branch to the remote repository.
+```
+    git add .
+    git commit -m "Your commit message"
+    git push origin feature-name
+```
+- **Pull Request:**
+    When you're ready to merge your changes back into the main branch (e.g., master), open a pull request. This is a request to merge your feature branch into the main branch.
+
+- **Code Review:**
+    Other team members review your code by looking at the changes in the pull request. They may suggest improvements or ask questions. This collaborative process helps maintain code quality.
+
+- **Address Feedback:**
+    If there are comments or suggested changes, address them by making additional commits to the same feature branch. The pull request is updated automatically.
+
+- **Continuous Integration (CI):**
+    Integrate your feature branch with a CI system. CI tools can run automated tests to ensure that your changes don't break existing functionality.
+
+- **Merge into Main Branch:**
+    Once the feature branch is approved and all tests pass, merge it into the main branch. This can be done using the merge button on the pull request or by using the command line.
+
+    ```
+    git checkout master
+    git merge feature-name
+    git push origin master
+    ```
+- **Delete Feature Branch:** After the merge, you can delete the feature branch both locally and remotely.
+  ```
+  git branch -d feature-name   # Locally
+  git push origin --delete feature-name  # Remotely
+  ```
 
 ***
 
@@ -203,3 +239,33 @@ This will update the `master` branch on the remote repository with the changes f
  git branch <branch_name>
  git merge <branch_name> -m "Message"
  ```
+
+ - #### Git pull request pull request merge conflicts solve process in CLI
+ 
+ Step 1: Clone the repository or update your local repository with the latest changes.
+```
+git pull origin main
+```
+Step 2: Switch to the head branch of the pull request.
+```
+git checkout feature2
+```
+Step 3: Merge the base branch into the head branch.
+```
+git merge main
+```
+Step 4: Fix the conflicts and commit the result.
+See Resolving a merge conflict using the command line for step-by-step instructions on resolving merge conflicts.
+
+Step 5: Push the changes.
+```
+git push -u origin feature2
+ ```
+
+ - #### Feature Branch Workflow
+
+ 1. Create feature branch
+ 2. Upload to Github
+ 3. Create Pull request
+ 4. Merge feature branch
+   
