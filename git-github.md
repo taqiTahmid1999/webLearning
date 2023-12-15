@@ -74,7 +74,9 @@ git pull origin <branch_name>
 
 This command is convenient for synchronizing your local branch with the corresponding branch on the remote repository. However, it's important to note that `git pull` automatically performs a merge, which may lead to merge conflicts if changes have been made both locally and remotely.
 
-If you prefer more control over the merging process or want to review changes before merging, you can use `git fetch` followed by `git merge` or `git rebase` separately.
+If you prefer more control over the merging process or want to review changes before merging, you can use `git fetch` followed by `git merge` or `git rebase` separately.  
+
+17. ***git merge <branch_name> -m "Message"***:  Usually when we have two branch, that we want to merge the result merge will be the branch where we currently are. It is a good idea to merge a feature branch with the main branch when we are in main branch. So that the merged branch will be the main branch.
 
 ***
 
@@ -194,4 +196,10 @@ This will update the `master` branch on the remote repository with the changes f
  - #### Github to local
  ```
  git pull origin main
+ ```
+
+ - #### Git Branch and Merge
+ ```
+ git branch <branch_name>
+ git merge <branch_name> -m "Message"
  ```
