@@ -12,139 +12,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Selector</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        html{
-            font-size: 25px;
-        }
-        *{
-            margin: 0;
-            padding: 0;
-            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-        }
-        #lorem1{
-            width: 60ch;
-        }
-        .--text_div{
-            display: flex;
-            justify-content: center;
-            text-align: center;
-        }
-        .border_1px_solid_red{
-            border: 1px solid red;
-        }
-        #lorem2{
-            width: 75ch;
-        }
-        .--btn_div{
-            flex-direction: column;
-            align-items: center;
-
-        }
-        div{
-            margin: 0.25rem;
-            padding: 0.25rem;
-            border:4px dotted black;
-        }
-        #parent1 .--descendent{
-            border:4px solid red;
-        }
-        #parent2 > .--descendent{
-            border:4px solid pink;
-        }
-        .--target1 ~ .--sibling1{
-            border: 4px solid yellowgreen;
-        }
-
-        .--target2 + .--sibling2{
-            border: 4px solid purple;
-        }
-        .one , #two , .three{
-            border: 4px solid saddlebrown;
-        }
-        div#four.four{
-            border: 4px double blueviolet;
-        }
-        [id="username"] {
-            color: pink;
-        }
-        [id*="ss"] {
-            color: red;
-        }
-        [autofocus] {
-            color: blueviolet;
-        }
+        
+/* 
+descendant
+#nazrul_islam div{
+    color: red;
+} */
+/* only child
+#nazrul_islam > div{
+    border:1px solid red;
+    background-color: pink;
+} */
+/* little brothers
+#Badol ~ div{
+    border: 1px solid peru;
+} */
+/* only immediate little brother
+#Badol + div{
+    border: 1px solid peachpuff;
+} */
+/* random many or
+#suriya , #simtana{
+    border: 1px solid peachpuff;
+} */
+/* and
+div.monir_child{
+    color: red;
+} */
     </style>
 </head>
 <body>
-    <div class="--text_div">
-        <p id="lorem1">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptate sed, amet mollitia harum ducimus vero officia, hic cumque pariatur voluptatum provident illo deleniti! Corporis sint, error accusamus ut dicta enim.</p>
-    </div>
-    <div class="--btn_div --text_div border_1px_solid_red">
-        <button class="border_1px_solid_red">CSS</button>
-        <p id="lorem2">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Animi molestiae fugit illo quia blanditiis dolorem eum alias deleniti magni laudantium. Quibusdam obcaecati beatae, magni culpa fuga cupiditate nesciunt aliquam adipisci?</p>
-        
-    </div>
-    <h3>Descendent</h3>
-    <div id="parent1">Parent
-        <div class="--descendent">child
-            <div class="--descendent">Grand Child
-                <div class="--descendent">Grand Grand Child</p>
-                </div>
-            </div>
+    <!--(space)==> bongshodhor , > ==> only their child not grand child, + ==>only immediate little brother , ~ ==>little brothers, or ==>random many or, and ==> -->
+    <div id="nazrul_islam">
+        Nazrul Islam
+        <div id="moni" class="nazrul_islam_child">Moni
+            <div class="monir_child" id="saiful">Saiful Islam</div>
+            <div class="monir_child" id="sadia">Sadia Islam</div>
+            <div class="monir_child" id="babu">Babu</div>
+        </div>
+        <div id="Badol" class="nazrul_islam_child">Badol
+            <div class="badol_child" id="nayeem">Nayeem</div>
+            <div class="badol_child" id="suriya">Nishat</div>
+        </div>
+        <div id="Kamal" class="nazrul_islam_child">Kamal</div>
+        <div id="Jamal" class="nazrul_islam_child">Jamal
         </div>
     </div>
-
-
-    <h3>Direct Every Children</h3>
-    <div id="parent2">Parent
-        <div class="--descendent">child1
-            <div class="--descendent">Grand Child1
-            </div>
-        </div>
-        <div class="--descendent">child2
-            <div class="--descendent">Grand Child2
-            </div>
-        </div>
-    </div>
-
-    <h3>General sibling selector</h3>
-    <div class="--sibling1">One</div>
-    <div class="--sibling1 --target1">Target</div>
-    <div class="--sibling1">Three</div>
-    <div class="--sibling1">Four</div>
-
-    <h3>Adjecent sibling selector</h3>
-    <div class="--sibling2">One</div>
-    <div class="--sibling2 --target2">Target</div>
-    <div class="--sibling2">Three</div>
-    <div class="--sibling2">Four</div>
-
-    <h3>Or selector</h3>
-    <div class="one">One
-        <p id="two">Two</p>
-    </div>
-    <div class="three">Three</div>
-
-    <h3>And Selector</h3>
-    <div class="four" id="four">Four</div>
-
-
-    <h3>Attribute Selector</h3>
-    <form>
-        <p>
-            <label for="username">Username: </label>
-            <input type="text" id="username" name="username" placeholder="taqi1999" required autocomplete="on">
-        </p>
-        <p>
-            <label for="mail">Email: </label>
-            <input type="email" id="mail" name="mail" placeholder="example@mail.com" required autofocus autocomplete="on">
-        </p>
-        <p>
-            <label for="password">Password: </label>
-            <input type="password" id="password" name="password" required autocomplete="on">
-        </p>
-        
-    </form>
-
 </body>
 </html>
