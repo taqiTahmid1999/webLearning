@@ -1,4 +1,4 @@
-###### [git-Github cheatsheat](./assets/git-github-reference-1.pdf)
+###### [git-Github cheatsheat](https://supersimpledev.github.io/references/git-github-reference.pdf)
   
 Git-Github Architecture
 ***
@@ -269,3 +269,11 @@ git push -u origin feature2
  3. Create Pull request
  4. Merge feature branch
    
+> [Fork:](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo)
+>> Sure! Imagine you're working on a project with a friend, and your friend has the main version of the project saved on their computer. Now, you want to work on this project too, but you don't want to mess up your friend's original version. So, what do you do? You make a copy of the project on your own computer. This copy is called a "fork."
+>>Now, you have your own version of the project to work on. You can make changes, experiment with new ideas, and do whatever you want with it without affecting the original project your friend has. This is useful because it lets you try out things without worrying about breaking anything in the main project.
+>>Once you're happy with your changes and you want to share them with your friend or with the main project, you can send a message or a "pull request" to your friend or the main project's owner. This is like saying, "Hey, I made some cool changes to my version of the project. Would you like to add them to the main project?" If they like your changes, they can merge them into the main project. And if not, no worries! Your forked version remains separate, and you can keep working on it or try something else.
+>>So, in simple terms, a fork is just a copy of a project that you can work on without affecting the original, and it's often used in collaborative projects like open source software development.
+    Fork the repository.
+    Make the fix.
+    Submit a pull request to the project owner.
