@@ -1,1 +1,55 @@
 <!--height and width : https://www.theodinproject.com/lessons/foundations-intro-to-css#properties-to-get-started-with-->
+<!--https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model#inner_display_type-->
+<!--
+    Inner display type: how elements inside a box are distributed
+    Outer display type: how the box will be arranged him with other box
+-->
+<!--box-sizing: content-box|border-box-->
+<!--
+    top right bottom left
+    top leftandright bottom
+    topbottom leftright
+-->
+<!--
+    auto and centering
+Each of the margin properties can also accept a value of auto. A value of auto basically tells the browser to define the margin for you. In most cases, a value of auto will be equivalent to a value of 0 (which is the initial value for each margin property) or else whatever space is available on that side of the element. However, auto is handy for horizontal centering.-->
+<!--
+    Negative Margins
+As you might suspect, while a positive margin value pushes other elements away, a negative margin will either pull the element itself in that direction, or pull other elements toward it.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box Model</title>
+    <style>
+        *{
+        outline: 1px solid black;
+        padding: 5px;
+        margin: 0px auto;
+    }
+    html{
+        outline: 0;
+    }
+
+    </style>
+</head>
+<body>
+    <!--
+        div=> display: block;
+        span=> display: inline;
+    -->
+    <span style="display: block;">I am a paragraph. A short one.</span>
+    <div style="display: inline-flex;">
+    <div>Item One</div>
+    <div>Item Two</div>
+    <div>item Three</div>    
+      
+    </div>lkdfjg
+    
+    <div>
+        I am another paragraph. Some of the <span style="display: block;">words</span> have been wrapped in a span element.
+    </div>
+</body>
+</html>
