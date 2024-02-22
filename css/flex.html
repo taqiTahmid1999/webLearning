@@ -13,4 +13,44 @@
     flex-items property: order, flex-grow/shrink(main axis grow or shrink mainly good for responsive), flex-basis( better than min-width{it honors min-width but shrink when needed})
 
     flex: [flex-grow] [flex-shrink] [flex-basis]
+
+    flex: 1 => flex: 1 1 0 (flex basis 0% means width is been ignored)
+    flex: auto => flex: 1 1 auto(flex basis auto means width is )
+    
+initial
+The item is sized according to its width and height properties. It shrinks to its minimum size to fit the container, but does not grow to absorb any extra free space in the flex container. This is equivalent to setting "flex: 0 1 auto".
+
+auto
+The item is sized according to its width and height properties, but grows to absorb any extra free space in the flex container, and shrinks to its minimum size to fit the container. This is equivalent to setting "flex: 1 1 auto".
+
+none
+The item is sized according to its width and height properties. It is fully inflexible: it neither shrinks nor grows in relation to the flex container. This is equivalent to setting "flex: 0 0 auto".
+
+<'flex-grow'>
+Defines the flex-grow of the flex item. Negative values are considered invalid. Defaults to 1 when omitted. (initial is 0)
+
+<'flex-shrink'>
+Defines the flex-shrink of the flex item. Negative values are considered invalid. Defaults to 1 when omitted. (initial is 1)
+
+<'flex-basis'>
+Defines the flex-basis of the flex item. A preferred size of 0 must have a unit to avoid being interpreted as a flexibility. Defaults to 0 when omitted. (initial is auto)
 -->
+<!--https://www.joshwcomeau.com/css/interactive-guide-to-flexbox/-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex</title>
+</head>
+
+<body>
+    <form style="display: flex; flex-flow: row wrap;">
+        <input type="text" placeholder="Name" style="flex:auto">
+        <input type="email" placeholder="Email Address" style="flex:auto">
+        <input type="submit" value="Subscribe" style="flex:auto">
+    </form>
+</body>
+
+</html>
