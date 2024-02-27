@@ -1,0 +1,241 @@
+<!--
+    Summary:
+    Scope:      Global Scope: var, let, const
+                Local Scope:
+                        Function Scope: var, let, const
+                        Block Scope: let, const
+
+    Hoisting:   In Global and Function Scope var declaration ( not assigned value ) host.
+
+    Declaration: var is re-declarable but let and const are not
+    this bindings: if var is global it binds to this, but let and const never
+var:
+
+    In JavaScript, the `var` keyword is used for variable declaration. However, it's important to note that `var` has some key aspects that you should be aware of:
+
+1. Function Scope: Variables declared with `var` are function-scoped, meaning they are accessible within the function in which they are defined. If a variable is declared within a function, it is not accessible outside of that function.
+----------------------------------------------------------------------------------------------------------------
+Certainly! Here's an example that illustrates the function scope of variables declared with `var`:
+
+```javascript
+function myFunction() {
+  var x = 10;
+  console.log(x); // Output: 10
+}
+
+console.log(x); // Error: ReferenceError: x is not defined
+```
+
+In this example, the variable `x` is declared within the `myFunction()` function. It is accessible within the function scope, as demonstrated by the first `console.log(x)` statement. However, if you try to access `x` outside of the function, you will encounter a `ReferenceError` because the variable is not defined in the outer scope.
+
+Here's another example to showcase the function scope and how variables with the same name can coexist in different functions:
+
+```javascript
+function outerFunction() {
+  var x = 10;
+  console.log(x); // Output: 10
+
+  function innerFunction() {
+    var x = 20;
+    console.log(x); // Output: 20
+  }
+
+  innerFunction();
+}
+
+outerFunction();
+```
+
+In this example, we have an outer function `outerFunction()` and an inner function `innerFunction()`. Both functions declare a variable `x`, but they exist within their respective function scopes. The `console.log()` statements within each function will output the value of `x` within their own scopes.
+
+Function scope allows for variable isolation and prevents naming conflicts between variables in different functions. However, it's important to note that variables declared with `var` can still be accessed within nested functions.
+----------------------------------------------------------------------------------------------------------
+
+2. Hoisting: JavaScript hoists variables declared with `var` to the top of their containing function or global scope. This means you can use a variable before it is declared, although it will have an initial value of `undefined` until it is assigned a value.
+____________________________________________________________________
+Certainly! Here's an example that demonstrates variable hoisting in JavaScript:
+
+```javascript
+function myFunction() {
+  console.log(x); // Output: undefined
+  var x = 10;
+  console.log(x); // Output: 10
+}
+
+myFunction();
+```
+
+In this example, the variable `x` is used before it is explicitly declared. According to hoisting, the variable declaration `var x` is moved to the top of the function scope during the compilation phase. As a result, the first `console.log(x)` statement does not throw an error but instead outputs `undefined`, indicating that the variable exists but has not been assigned a value yet. The second `console.log(x)` statement, after the variable assignment, outputs the assigned value of `10`.
+
+It's important to note that while variables are hoisted to the top of their containing scope, only the variable declaration is hoisted, not the initialization or assignment. For example:
+
+```javascript
+function myFunction() {
+  console.log(x); // Output: undefined
+  var x = 10;
+  console.log(x); // Output: 10
+}
+
+myFunction();
+```
+
+In this case, the variable `x` is declared and assigned a value of `10` in the same line. The first `console.log(x)` statement still outputs `undefined`, even though the variable has been declared, because the assignment is not hoisted.
+
+Variable hoisting can sometimes lead to unexpected behavior or bugs if not understood properly. It's generally recommended to declare variables at the top of their scope to avoid confusion and make code more readable and maintainable.
+_____________________________________________________________________
+
+3. No Block Scope: Unlike the `let` and `const` keywords introduced in ECMAScript 6 (ES6), `var` does not have block scope. Variables declared with `var` are accessible within the nearest enclosing function, regardless of blocks (such as if statements or loops).
+______________________________________________________________________
+Certainly! Here's an example that illustrates the lack of block scope for variables declared with `var`:
+
+```javascript
+function myFunction() {
+  if (true) {
+    var x = 10;
+    console.log(x); // Output: 10
+  }
+
+  console.log(x); // Output: 10
+}
+
+myFunction();
+```
+
+In this example, the variable `x` is declared inside an `if` statement block. However, despite being declared within the block, the variable is accessible outside of the block. Both `console.log()` statements output `10`, indicating that the variable `x` is accessible within the entire function scope, regardless of the block it was declared in.
+
+This behavior can sometimes lead to unintended consequences and bugs, especially if you expect variables declared within blocks to be limited in scope. Consider the following example:
+
+```javascript
+function myFunction() {
+  for (var i = 0; i < 3; i++) {
+    setTimeout(function() {
+      console.log(i); // Output: 3 3 3
+    }, 1000);
+  }
+}
+
+myFunction();
+```
+
+In this example, a loop is used to schedule three `setTimeout` functions that log the value of `i`. Since `var` does not have block scope, the variable `i` is not scoped to each iteration of the loop. As a result, when the timeouts execute after one second, the value of `i` is `3` for all three iterations. This behavior is unexpected and may not match the desired outcome.
+
+To mitigate this issue, you can use the `let` keyword introduced in ES6, which provides block scope and avoids such unintended behavior:
+
+```javascript
+function myFunction() {
+  for (let i = 0; i < 3; i++) {
+    setTimeout(function() {
+      console.log(i); // Output: 0 1 2
+    }, 1000);
+  }
+}
+
+myFunction();
+```
+
+In this updated example using `let`, each iteration of the loop creates a new block scope for `i`. As a result, the `setTimeout` functions correctly capture the respective values of `i` for each iteration, producing the expected output.
+
+____________________________________________________________________
+
+4. Variable Re-declaration: Variables declared with `var` can be re-declared within the same scope without causing an error. This behavior can lead to unintended bugs and should be used with caution.
+___________________________________________________________________
+Certainly! Here's an example that demonstrates the ability to re-declare variables with `var` within the same scope:
+
+```javascript
+function myFunction() {
+  var x = 10;
+  console.log(x); // Output: 10
+
+  var x = 20; // Variable re-declaration
+  console.log(x); // Output: 20
+}
+
+myFunction();
+```
+
+In this example, the variable `x` is initially declared with a value of `10`. However, within the same scope, it is re-declared using the `var` keyword, and its value is updated to `20`. Both `console.log()` statements output the respective values of `x`, demonstrating that variable re-declaration is allowed with `var`.
+
+Variable re-declaration can lead to unintended bugs and unexpected behavior, particularly if you accidentally overwrite the value of a variable without intending to. Consider the following example:
+
+```javascript
+function myFunction() {
+  var
+____________________________________________________________________
+
+
+5. Global Scope: If a `var` variable is declared outside of any function, it becomes a global variable, accessible throughout the entire script. Global variables can potentially cause naming conflicts and make code harder to maintain, so it's generally recommended to limit their use.
+_____________________________________________________________________
+Certainly! Here's an example that showcases the potential issues of using global variables declared with `var`:
+
+```javascript
+var x = 10;
+
+function myFunction() {
+  console.log(x); // Output: 10
+}
+
+myFunction();
+
+console.log(x); // Output: 10
+```
+
+In this example, the variable `x` is declared outside of any function, making it a global variable. As a result, it can be accessed and modified from anywhere within the script. The `myFunction()` function accesses and logs the value of `x` as `10`, both within the function and outside of it.
+
+The use of global variables can introduce several problems, including:
+
+1. Naming Conflicts: Global variables are accessible from any part of the script, so if multiple parts of the codebase use the same variable name, it can lead to naming conflicts and unexpected behavior.
+
+2. Code Maintainability: With global variables, it becomes challenging to track and manage the state and flow of your program. Changes made to global variables can have unintended consequences throughout the codebase, making it harder to understand, debug, and maintain.
+
+3. Code Modularity and Reusability: Global variables hinder modularity and reusability since they introduce dependencies between different parts of the code. It becomes more difficult to isolate and reuse code components when they rely on global variables.
+
+To avoid these issues, it is generally recommended to limit the use of global variables and instead use local variables within the appropriate function scopes. If you need to share data between functions, consider passing arguments or using appropriate data structures (such as objects or arrays) to encapsulate and organize the shared data. This approach promotes better code organization, reduces naming conflicts, and improves code maintainability.
+
+
+
+this binding:
+
+    var myName = "taqi tahmid"
+let age = 23
+const ID = "011221536"
+console.log(this.myName)//taqi tahmid
+console.log(this.age)//undefined
+
+
+Sure, let's simplify this explanation.
+
+In JavaScript, the `this` keyword is used to refer to the context in which a function is executed. It's like a placeholder that represents the current object or environment.
+
+Now, let's talk about variables declared with `var`, `let`, and `const` in relation to `this`:
+
+1. **Variables declared with `var`**:
+   - When `var` variables are declared globally (outside any function), they become properties of the global object (`window` in browsers, `global` in Node.js).
+   - Because global variables declared with `var` become properties of the global object, they are indirectly related to `this`. So, in a way, they are "bound" to `this` when accessed from the global context.
+
+2. **Variables declared with `let` and `const`**:
+   - Variables declared with `let` and `const` do not create properties on the global object, even when declared globally.
+   - Therefore, they are not directly related to `this`. They do not bind to `this` in the same way as `var`.
+
+In simpler terms:
+- With `var`, global variables are like part of the global object family, so they're indirectly linked to `this`.
+- But with `let` and `const`, they're like their own independent entities, not directly connected to `this`.
+
+Here's a basic example:
+
+```javascript
+var globalVar = 10;
+let globalLet = 20;
+const globalConst = 30;
+
+console.log(window.globalVar); // 10 (in a browser environment)
+console.log(window.globalLet); // undefined
+console.log(window.globalConst); // undefined
+```
+
+In this example, `globalVar` becomes a property of the global object (`window`), while `globalLet` and `globalConst` do not. Therefore, only `globalVar` is indirectly linked to `this`.
+____________________________________________________________________
+
+
+
+It's worth noting that `let` and `const` were introduced in ES6 as alternatives to `var`, offering block scope and better variable handling. It's generally recommended to use `let` and `const` over `var` in modern JavaScript development, unless there's a specific reason to use `var` (such as compatibility with older browsers or specific legacy codebases).
+-->

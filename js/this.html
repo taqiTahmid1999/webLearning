@@ -1,0 +1,174 @@
+<!--
+    ***important link :::https://medium.com/@badreddine.boudaoud21/javascript-this-keyword-s-binding-rules-65acc7495ddb ***
+    this.property => currentObject.property
+    pronoun of current object: [In JavaScript, this is used as a reference to the current object, acting as a pronoun that represents the object instance within which the code is currently executing. Therefore, this.property refers to a property of the current object.]
+
+    const person = {
+    firstName: 'John',
+    lastName: 'Doe',
+    fullName: function() {
+        return this.firstName + ' ' + this.lastName;
+    }
+};
+
+console.log(person.fullName()); // Output: John Doe
+
+Certainly! In JavaScript, the `this` keyword is a special identifier that refers to the current execution context. The value of `this` is determined by how a function is called, rather than where it is defined. Understanding `this` is crucial for working with object-oriented programming in JavaScript, as well as for handling event handlers and callbacks.
+
+Here's a breakdown of how `this` works in different contexts:
+
+1. **Global Context**:
+   - In the global context (outside of any function), `this` refers to the global object. In web browsers, the global object is `window`.
+
+   ```javascript
+   console.log(this === window); // true in a browser environment
+   ```
+
+2. **Function Context**:
+   - In a regular function (not an arrow function), the value of `this` depends on how the function is called:
+     - **Regular Function Invocation**: When a regular function is called without any context, `this` refers to the global object (in non-strict mode) or `undefined` (in strict mode).
+
+     ```javascript
+     function myFunction() {
+         console.log(this === window); // true in a browser environment
+     }
+     myFunction(); // Invoked in the global context
+     ```
+
+     - **Method Invocation**: When a function is called as a method of an object, `this` refers to the object that the method is called on.
+
+     ```javascript
+     const obj = {
+         name: 'John',
+         greet: function() {
+             console.log('Hello, ' + this.name);
+         }
+     };
+     obj.greet(); // Logs: Hello, John
+     ```
+
+3. **Event Handlers**:
+   - In event handlers (e.g., DOM event listeners), `this` refers to the element that triggered the event.
+
+   ```javascript
+   document.getElementById('myButton').addEventListener('click', function() {
+       console.log(this); // Refers to the clicked button element
+   });
+   ```
+
+4. **Constructor Context**:
+   - When a function is used as a constructor with the `new` keyword, `this` refers to the newly created instance of the object.
+
+   ```javascript
+   function Person(name) {
+       this.name = name;
+   }
+   const john = new Person('John');
+   console.log(john.name); // John
+   ```
+
+5. **Arrow Functions**:
+   - Arrow functions do not have their own `this` binding. Instead, they inherit the `this` value from the surrounding lexical context (the enclosing function or global scope).
+
+   ```javascript
+   const obj = {
+       name: 'Alice',
+       greet: () => {
+           console.log('Hello, ' + this.name); // Refers to the global object (window in a browser)
+       }
+   };
+   obj.greet(); // Logs: Hello, undefined
+   ```
+
+Understanding the behavior of `this` in different contexts is essential for writing JavaScript code that behaves as expected and avoids common pitfalls related to context and scope.
+
+
+
+this.bonding:
+
+   Sure, let's break down "this" binding in simpler terms.
+
+Think of a scenario where you're in a group of friends. Each friend has their own name, but when you refer to yourself, you say "I" or "me". Similarly, in JavaScript, when you're working with objects and methods, the keyword "this" acts like "I" or "me" to refer to the current object.
+
+Here's a simple explanation:
+
+1. **"this" in Regular Functions**:
+   - When you use "this" inside a regular function (not an arrow function), what it refers to depends on how the function is called:
+     - If the function is called as a standalone function (not attached to an object), "this" refers to the global object (in a browser, it's usually "window").
+     - If the function is called as a method of an object, "this" refers to the object itself.
+
+2. **"this" in Arrow Functions**:
+    Imagine you're in a cooking class where you and your mentor (the chef) are preparing a dish together. You (the rookie chef) are following your mentor's instructions closely.
+
+In this scenario:
+- You (the rookie chef) are like an arrow function because you follow instructions without your own separate identity or context.
+- Your mentor (the chef) represents the surrounding context in which you're working.
+
+Now, let's relate this to JavaScript:
+
+```javascript
+const kitchen = {
+    chefName: "Gordon Ramsay",
+    prepareDish: function() {
+        console.log(`Chef ${this.chefName} is preparing a dish.`);
+        
+        const innerFunction = () => {
+            console.log(`Rookie chef (arrow function) assists Chef ${this.chefName}.`);
+        };
+
+        innerFunction();
+    }
+};
+
+kitchen.prepareDish();
+```
+
+In this example:
+- `this.chefName` within the `prepareDish` method refers to the `chefName` property of the `kitchen` object. So, `this` refers to the `kitchen` object itself.
+- Inside the `innerFunction`, which is an arrow function, `this` doesn't have its own binding. Instead, it inherits the value of `this` from the surrounding (lexical) scope, which in this case is the `prepareDish` method. Therefore, `this.chefName` still refers to the `chefName` property of the `kitchen` object.
+
+So, when the `innerFunction` is called within `prepareDish`, it still refers to the same `chefName` property of the `kitchen` object, just like the rookie chef in the cooking class follows the instructions of the mentor (the chef).
+In JavaScript, "this" helps you refer to the object you're currently working with, making your code more dynamic and flexible. Just remember that its meaning depends on how and where it's used!
+
+var,let,const:
+ var myName = "taqi tahmid"
+let age = 23
+const ID = "011221536"
+console.log(this.myName)//taqi tahmid
+console.log(this.age)//undefined
+
+
+Sure, let's simplify this explanation.
+
+In JavaScript, the `this` keyword is used to refer to the context in which a function is executed. It's like a placeholder that represents the current object or environment.
+
+Now, let's talk about variables declared with `var`, `let`, and `const` in relation to `this`:
+
+1. **Variables declared with `var`**:
+   - When `var` variables are declared globally (outside any function), they become properties of the global object (`window` in browsers, `global` in Node.js).
+   - Because global variables declared with `var` become properties of the global object, they are indirectly related to `this`. So, in a way, they are "bound" to `this` when accessed from the global context.
+
+2. **Variables declared with `let` and `const`**:
+   - Variables declared with `let` and `const` do not create properties on the global object, even when declared globally.
+   - Therefore, they are not directly related to `this`. They do not bind to `this` in the same way as `var`.
+
+In simpler terms:
+- With `var`, global variables are like part of the global object family, so they're indirectly linked to `this`.
+- But with `let` and `const`, they're like their own independent entities, not directly connected to `this`.
+
+Here's a basic example:
+
+```javascript
+var globalVar = 10;
+let globalLet = 20;
+const globalConst = 30;
+
+console.log(window.globalVar); // 10 (in a browser environment)
+console.log(window.globalLet); // undefined
+console.log(window.globalConst); // undefined
+```
+
+In this example, `globalVar` becomes a property of the global object (`window`), while `globalLet` and `globalConst` do not. Therefore, only `globalVar` is indirectly linked to `this`.
+
+
+-->
