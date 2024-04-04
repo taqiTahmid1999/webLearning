@@ -1,0 +1,22 @@
+Yes, you've summarized it well:
+
+- `==` performs type coercion (type conversion) and then checks for equality.
+- `===` does not perform type coercion; it checks for equality of both value and type without any conversion.
+
+So, you can think of it as:
+
+- `==` for loose equality (checks value after type coercion).
+- `===` for strict equality (checks both value and type without coercion).
+
+Your summary captures the essence of the difference between the two operators.
+
+console.log(5 == 5); // true, both values are numbers and equal
+console.log(5 == '5'); // true, JavaScript converts the string '5' to a number and checks if they are equal
+console.log(5 == 10); // false, values are different
+console.log(0 == false); // true, JavaScript converts false to 0 and checks if they are equal
+console.log('' == false); // true, JavaScript converts the empty string to false and checks if they are equal
+
+console.log(5 === 5); // true, both values are numbers and equal
+console.log(5 === '5'); // false, values are equal but types are different
+console.log(0 === false); // false, values are equal but types are different
+console.log('' === false); // false, values are equal but types are different
