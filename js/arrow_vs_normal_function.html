@@ -1,0 +1,49 @@
+Sure thing! Let's simplify it even further:
+
+**Arrow Functions:**
+
+- **How they handle `this`:** Arrow functions don't have their own `this`. Instead, they borrow it from the place they are written in. So, `this` in an arrow function refers to whatever `this` is outside the arrow function.
+  
+- **Syntax:** Arrow functions use a shorter syntax with the `=>` arrow symbol. They're great for small, quick functions.
+
+- **Best for:** Using when you want `this` to refer to the same thing as it does outside the function. They're handy for short tasks like callbacks or methods in objects.
+
+- **Arguments:** They don't have their own `arguments` object.
+
+**Regular Functions:**
+
+- **How they handle `this`:** Regular functions have their own `this`, which changes based on how they're called. If called as part of an object, `this` refers to that object. If called globally, `this` usually means the global environment.
+
+- **Syntax:** Regular functions use the `function` keyword. They're a bit longer but very flexible.
+
+- **Best for:** When you need to control what `this` refers to or when you're making bigger functions. They're good for a wide range of tasks, including object methods and constructor functions.
+
+- **Arguments:** They have their own `arguments` object to access the values passed to the function.
+
+In simple terms, arrow functions are like quick helpers that share `this` with their surroundings, while regular functions are more flexible and can stand on their own with their own `this`.
+
+const obj ={
+    object_ref: this, 
+    rFunction: function() {
+        console.log(this);
+        bFunction=()=>{
+            console.log(this);
+        }
+        bFunction();
+    },
+    aFunction: ()=>{
+        console.log(this); 
+    }
+};
+
+console.log(obj.object_ref);
+obj.aFunction();
+obj.rFunction();
+ 
+output:
+--------------------------------
+window
+window
+{ object_ref: window, rFunction: [Function: rFunction], aFunction: [Function: aFunction] }
+{ object_ref: window, rFunction: [Function: rFunction], aFunction: [Function: aFunction] }
+
