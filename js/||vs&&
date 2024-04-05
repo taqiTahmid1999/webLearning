@@ -1,3 +1,4 @@
+The precedence of AND && is higher than ||, so it executes first.
 result = value1 || value2 || value3;
 The OR || operator does the following:
 
