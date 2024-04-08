@@ -6,8 +6,11 @@
 // Map: Collection of key-value pairs
 // Syntax: new Map([iterable])
 // Key, Value
+/*
+The break statement "jumps out" of a loop.
 
-
+The continue statement "jumps over" one iteration in the loop.
+*/
 //forEach Loop
 /*ArrayName/ObjectName/SetName/MapName.forEach(functionName);
 function functionName(value(array/set)/property value(object)/value(map), index(array/set)/property name(object)/key(map), array/set/object/map){
