@@ -1,0 +1,57 @@
+In JavaScript, an execution context is like an environment where your code runs. It determines what variables and functions are accessible at any given point in your code. There are three main types of execution contexts:
+
+1. **Global Execution Context:** This is the default context where your code starts execution. It creates a global object (like `window` in browsers) and sets up the global scope.
+
+2. **Function Execution Context:** Each time a function is called, a new execution context is created for that function. It contains the function's arguments, local variables, and the `this` keyword.
+
+3. **Eval Execution Context:** Code executed inside an `eval` function runs in its own context, but this is less commonly used.
+
+### Example to Understand Execution Context
+
+Let's look at a simple example to see how execution contexts work:
+
+```javascript
+// Global Execution Context
+var globalVar = "I am a global variable";
+
+function outerFunction() {
+  // Function Execution Context for outerFunction
+  var outerVar = "I am a variable in outerFunction";
+
+  function innerFunction() {
+    // Function Execution Context for innerFunction
+    var innerVar = "I am a variable in innerFunction";
+    console.log(globalVar); // Accessible
+    console.log(outerVar);  // Accessible
+    console.log(innerVar);  // Accessible
+  }
+
+  innerFunction();
+  console.log(innerVar); // Error: innerVar is not defined
+}
+
+outerFunction();
+console.log(outerVar); // Error: outerVar is not defined
+```
+
+### Step-by-Step Explanation
+
+1. **Global Execution Context:**
+   - The code starts in the global execution context.
+   - `globalVar` is defined in the global scope.
+
+2. **When `outerFunction` is called:**
+   - A new function execution context is created for `outerFunction`.
+   - Inside `outerFunction`, `outerVar` is defined and is only accessible within this context or any nested functions.
+
+3. **When `innerFunction` is called:**
+   - Another function execution context is created for `innerFunction`.
+   - Inside `innerFunction`, `innerVar` is defined and is only accessible within this context.
+
+4. **Variable Accessibility:**
+   - Inside `innerFunction`, `globalVar`, `outerVar`, and `innerVar` are all accessible because of the scope chain. `innerFunction` can access variables in its own context, its parent context (`outerFunction`), and the global context.
+   - `innerVar` is not accessible outside of `innerFunction`. Similarly, `outerVar` is not accessible outside of `outerFunction`.
+
+### Summary
+
+The execution context in JavaScript is crucial for determining the scope of variables and functions. Understanding it helps you write better, bug-free code by knowing where and how your variables and functions can be accessed.
