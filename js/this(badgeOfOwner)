@@ -1,0 +1,139 @@
+
+
+### Analogy
+
+Imagine `this` as a badge that signifies who the boss (owner) is. For regular functions, the badge can change hands based on how and where the function is called. For arrow functions, the badge is glued to whoever had it when the arrow function was created, and it never changes.
+
+### Examples
+
+1. **Arrow function inside an object method:**
+
+   ```javascript
+   const obj = {
+     name: "Alice",
+     greet: function() {
+       const innerArrowFunction = () => {
+         console.log(this.name);
+       };
+       innerArrowFunction();
+     }
+   };
+
+   obj.greet(); // "Alice"
+   ```
+
+   Here, `innerArrowFunction` is defined inside the `greet` method. When `greet` is called, `this` refers to `obj`. Since `innerArrowFunction` is an arrow function, it inherits `this` from `greet`, which is `obj`. Therefore, `innerArrowFunction` logs "Alice".
+
+2. **Arrow function in the global context:**
+
+   ```javascript
+   const name = "Global Name";
+   const greet = () => {
+     console.log(this.name);
+   };
+
+   greet(); // undefined (or window.name in browsers, which might be "")
+   ```
+
+   Here, `greet` is an arrow function defined in the global scope. In strict mode, `this` in the global scope is `undefined`. Therefore, when `greet` is called, it tries to access `this.name`, which is `undefined`.
+
+3. **Arrow function inside a constructor function:**
+
+   ```javascript
+   function Person(name) {
+     this.name = name;
+     this.sayName = () => {
+       console.log(this.name);
+     };
+   }
+
+   const person1 = new Person("Alice");
+   const person2 = new Person("Bob");
+
+   person1.sayName(); // "Alice"
+   person2.sayName(); // "Bob"
+   ```
+
+   In this example, `sayName` is an arrow function defined inside the `Person` constructor. When a new `Person` object is created, `this` inside the constructor refers to the newly created object (`person1` or `person2`). The arrow function `sayName` inherits `this` from the constructor, so it always refers to the specific instance of `Person`.
+
+### Summary
+
+- **Regular functions**: `this` changes based on how the function is called.
+- **Arrow functions**: `this` is inherited from the surrounding scope where the arrow function is defined and does not change.
+
+In simple terms, the "owner" of an arrow function's `this` is the same as the `this` value of the surrounding code where the arrow function is created. This means that an arrow function does not have its own `this`, but rather uses the `this` from its lexical environment.
+
+-----------------------------------------------------------------------------------------------
+In JavaScript, the `this` keyword refers to the owner of the function in which it is used. For regular functions, this owner is usually determined by how the function is called. However, arrow functions behave differently. Let's break it down in simple terms.
+
+### Regular Functions
+
+For regular functions, the value of `this` can change based on how the function is called. Here are a few examples:
+
+1. **As a method of an object:**
+
+   ```javascript
+   const obj = {
+     name: "Alice",
+     greet: function() {
+       console.log(this.name);
+     }
+   };
+
+   obj.greet(); // "Alice"
+   ```
+
+   Here, `this` refers to `obj` because `greet` is called as a method of `obj`.
+
+2. **As a standalone function:**
+
+   ```javascript
+   const greet = obj.greet;
+   greet(); // undefined or window (in non-strict mode)
+   ```
+
+   Here, `this` is not the object `obj` anymore, but instead the global object (or `undefined` in strict mode), because the function is called as a standalone function.
+
+### Arrow Functions
+
+Arrow functions do not have their own `this` context. Instead, they inherit `this` from the surrounding (lexical) scope at the time they are defined. This means that the value of `this` inside an arrow function is the same as `this` in the scope where the arrow function was defined.
+
+Let's look at an example:
+
+1. **Arrow function inside a method:**
+
+   ```javascript
+   const obj = {
+     name: "Alice",
+     greet: function() {
+       const innerArrowFunction = () => {
+         console.log(this.name);
+       };
+       innerArrowFunction();
+     }
+   };
+
+   obj.greet(); // "Alice"
+   ```
+
+   Here, `innerArrowFunction` is an arrow function defined inside the `greet` method. The `this` value inside `innerArrowFunction` is the same as `this` in `greet`, which is `obj`. Therefore, it logs "Alice".
+
+2. **Arrow function in the global context:**
+
+   ```javascript
+   const name = "Global Name";
+   const greet = () => {
+     console.log(this.name);
+   };
+
+   greet(); // undefined
+   ```
+
+   Here, `greet` is an arrow function defined in the global context. Since arrow functions don't have their own `this`, it inherits `this` from the global scope. In strict mode, `this` in the global scope is `undefined`, so it logs `undefined`.
+
+### Key Points
+
+- **Regular functions**: `this` depends on how the function is called.
+- **Arrow functions**: `this` is inherited from the surrounding scope where the function is defined.
+
+By understanding these differences, you can predict and control the behavior of `this` in your JavaScript code.
