@@ -1,0 +1,108 @@
+The `Array.prototype.every()` method in JavaScript tests whether all elements in the array pass the test implemented by the provided function. It returns a Boolean value: `true` if all elements pass the test, and `false` otherwise.
+
+The method signature looks like this:
+```javascript
+arr.every(callback(currentValue, index, array), thisValue)
+```
+Here's a breakdown of each parameter:
+
+1. **callback**: The function to test for each element.
+2. **currentValue**: The current element being processed in the array.
+3. **index**: The index of the current element being processed in the array.
+4. **array**: The array `every` was called upon.
+5. **thisValue** (optional): A value to use as `this` when executing the callback function.
+
+Let's look at examples for each parameter:
+
+### 1. `currentValue`
+
+The `currentValue` parameter is the current element being processed in the array.
+
+Example:
+```javascript
+const numbers = [2, 4, 6, 8];
+
+const allEven = numbers.every(function(currentValue) {
+    return currentValue % 2 === 0;
+});
+
+console.log(allEven); // true, because all elements are even
+```
+
+### 2. `index`
+
+The `index` parameter is the index of the current element being processed in the array.
+
+Example:
+```javascript
+const numbers = [2, 4, 6, 8];
+
+const checkIndex = numbers.every(function(currentValue, index) {
+    console.log(`Index: ${index}, Value: ${currentValue}`);
+    return currentValue % 2 === 0;
+});
+
+console.log(checkIndex); // true, it prints the index and value of each element
+```
+
+Output:
+```
+Index: 0, Value: 2
+Index: 1, Value: 4
+Index: 2, Value: 6
+Index: 3, Value: 8
+true
+```
+
+### 3. `array`
+
+The `array` parameter is the array that `every` was called upon.
+
+Example:
+```javascript
+const numbers = [2, 4, 6, 8];
+
+const checkArray = numbers.every(function(currentValue, index, array) {
+    console.log(array); // prints the whole array each time
+    return currentValue % 2 === 0;
+});
+
+console.log(checkArray); // true, it prints the array during each iteration
+```
+
+Output:
+```
+[2, 4, 6, 8]
+[2, 4, 6, 8]
+[2, 4, 6, 8]
+[2, 4, 6, 8]
+true
+```
+
+### 4. `thisValue`
+
+The `thisValue` parameter is a value to use as `this` when executing the callback function. It is optional.
+
+Example:
+```javascript
+const numbers = [2, 4, 6, 8];
+
+const context = { divisor: 2 };
+
+const checkThisValue = numbers.every(function(currentValue) {
+    return currentValue % this.divisor === 0;
+}, context);
+
+console.log(checkThisValue); // true, because all elements are divisible by 2
+```
+
+In this example, `thisValue` (`context`) is used to refer to an object with a `divisor` property inside the callback function.
+
+### Summary
+
+- `currentValue`: The element currently being processed.
+- `index`: The index of the element currently being processed.
+- `array`: The array `every` was called upon.
+- `thisValue`: A value to use as `this` when executing the callback function.
+
+Using these parameters, you can customize your callback function to perform various checks on the elements of the array.
