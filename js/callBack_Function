@@ -1,0 +1,79 @@
+A callback function is a function that is passed as an argument to another function and is executed (or "called back") at a later point in time. Callbacks are used to handle asynchronous operations, events, or to allow functions to be flexible and reusable with different behaviors.
+
+### Basic Example
+
+Here's a simple example to illustrate a callback function:
+
+```javascript
+function greet(name, callback) {
+    console.log('Hello, ' + name);
+    callback();
+}
+
+function sayGoodbye() {
+    console.log('Goodbye!');
+}
+
+greet('Alice', sayGoodbye);
+```
+
+In this example:
+1. The `greet` function takes two arguments: a `name` and a `callback` function.
+2. It prints a greeting message.
+3. It then calls the `callback` function.
+4. The `sayGoodbye` function is passed as the `callback` to `greet`.
+
+When you run this code, the output will be:
+```
+Hello, Alice
+Goodbye!
+```
+
+### Callback in Asynchronous Operations
+
+Callbacks are especially useful in asynchronous operations like network requests, file reading, or timers. Here's an example with `setTimeout`:
+
+```javascript
+function printMessage() {
+    console.log('This message is printed after 2 seconds');
+}
+
+setTimeout(printMessage, 2000); // printMessage will be called after 2 seconds
+```
+
+### Callback in Array Methods
+
+Many array methods, such as `forEach`, `map`, `filter`, and `every`, use callbacks to process each element in the array.
+
+Example with `forEach`:
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+
+numbers.forEach(function(number) {
+    console.log(number * 2);
+});
+```
+
+In this example:
+- The `forEach` method takes a callback function that is executed for each element in the `numbers` array.
+- The callback function takes one argument, `number`, which is the current element being processed.
+- The callback function prints the double of each element.
+
+Output:
+```
+2
+4
+6
+8
+10
+```
+
+### Summary
+
+- **Definition**: A callback function is a function passed as an argument to another function, to be executed later.
+- **Uses**: Handling asynchronous operations, events, and making functions more flexible and reusable.
+- **Examples**: 
+  - Synchronous callbacks (e.g., array methods like `forEach`).
+  - Asynchronous callbacks (e.g., `setTimeout`, network requests).
+
+Callbacks are a fundamental concept in JavaScript, enabling more dynamic and interactive programming.
