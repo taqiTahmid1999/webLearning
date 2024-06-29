@@ -1,0 +1,4 @@
+B-->Boolean,BigInt
+N--> number, null
+S--> string, symbol
+U--> undefined
