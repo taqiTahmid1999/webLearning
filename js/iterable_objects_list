@@ -1,0 +1,122 @@
+In JavaScript, an iterable is an object that implements the `@@iterator` method, which means it can be iterated over with constructs like `for...of` loops. Here are the common iterable objects in JavaScript:
+
+### Built-in Iterables
+
+1. **Arrays**
+   ```javascript
+   const arr = [1, 2, 3];
+   for (const item of arr) {
+       console.log(item);
+   }
+   ```
+
+2. **Strings**
+   ```javascript
+   const str = 'hello';
+   for (const char of str) {
+       console.log(char);
+   }
+   ```
+
+3. **Maps**
+   ```javascript
+   const map = new Map();
+   map.set('a', 1);
+   map.set('b', 2);
+   for (const [key, value] of map) {
+       console.log(key, value);
+   }
+   ```
+
+4. **Sets**
+   ```javascript
+   const set = new Set([1, 2, 3]);
+   for (const item of set) {
+       console.log(item);
+   }
+   ```
+
+5. **Typed Arrays** (e.g., `Uint8Array`, `Float32Array`, etc.)
+   ```javascript
+   const typedArray = new Uint8Array([1, 2, 3]);
+   for (const item of typedArray) {
+       console.log(item);
+   }
+   ```
+
+6. **Arguments Object** (within functions)
+   ```javascript
+   function example() {
+       for (const arg of arguments) {
+           console.log(arg);
+       }
+   }
+   example('a', 'b', 'c');
+   ```
+
+7. **NodeList** (returned by methods like `document.querySelectorAll`)
+   ```javascript
+   const nodeList = document.querySelectorAll('div');
+   for (const node of nodeList) {
+       console.log(node);
+   }
+   ```
+
+8. **HTMLCollection** (returned by methods like `document.getElementsByTagName`)
+   ```javascript
+   const htmlCollection = document.getElementsByTagName('div');
+   for (const element of htmlCollection) {
+       console.log(element);
+   }
+   ```
+
+### Custom Iterables
+
+You can create your own iterable objects by implementing the `@@iterator` method (Symbol.iterator) in your objects.
+
+Example:
+```javascript
+const customIterable = {
+    [Symbol.iterator]: function() {
+        let step = 0;
+        return {
+            next: function() {
+                step++;
+                if (step <= 5) {
+                    return { value: step, done: false };
+                } else {
+                    return { value: undefined, done: true };
+                }
+            }
+        };
+    }
+};
+
+for (const value of customIterable) {
+    console.log(value);
+}
+```
+
+Output:
+```
+1
+2
+3
+4
+5
+```
+
+### Summary
+
+Here’s the list of common iterable objects in JavaScript:
+
+- Arrays
+- Strings
+- Maps
+- Sets
+- Typed Arrays (e.g., `Uint8Array`, `Float32Array`, etc.)
+- Arguments Object (within functions)
+- NodeList (e.g., from `document.querySelectorAll`)
+- HTMLCollection (e.g., from `document.getElementsByTagName`)
+
+Additionally, you can create custom iterables by implementing the `@@iterator` method.
